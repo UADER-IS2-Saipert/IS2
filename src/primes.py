@@ -14,3 +14,6 @@ for num in range(lower, upper + 1):
                break
        else:
            print(num)
+
+# David Saipert
+# El programa funciona correctamente.
