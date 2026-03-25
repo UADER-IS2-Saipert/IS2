@@ -20,40 +20,38 @@ def factorial(num):
             num -= 1
         return fact 
 
-def validar_rango(num):
-    return 2 <= num <= 6
-
 def procesar_entrada(entrada):
     try:
         if "-" in entrada:
             partes = entrada.split("-")
-            desde = int(partes[0])
-            hasta = int(partes[1])
+
+            if partes[0] == "":
+                desde = 1
+                hasta = int(partes[1])
+
+            elif partes[1] == "":
+                desde = int(partes[0])
+                hasta = 60
+
+            else:
+                desde = int(partes[0])
+                hasta = int(partes[1])
 
             if desde > hasta:
                 desde, hasta = hasta, desde
-
-            if not (validar_rango(desde) and validar_rango(hasta)):
-                print("Error: solo se permiten valores entre 2 y 6.")
-                return
 
             for i in range(desde, hasta + 1):
                 print(f"{i}! = {factorial(i)}")
 
         else:
             num = int(entrada)
-
-            if not validar_rango(num):
-                print("Error: solo se permiten valores entre 2 y 6.")
-                return
-
             print(f"{num}! = {factorial(num)}")
 
     except:
-        print("Entrada inválida. Use un número entre 2 y 6.")
+        print("Entrada inválida.")
 
 if len(sys.argv) < 2:
-    entrada = input("Ingrese un número entre 2 y 6: ")
+    entrada = input("Ingrese un número o rango.")
 else:
     entrada = sys.argv[1]
 
