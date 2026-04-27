@@ -1,0 +1,49 @@
+class Jugador:
+    def jugar(self):
+        pass  # Método que implementarán las subclases
+
+# Subclases posiciones de campo
+class Delantero(Jugador):
+    def jugar(self):
+        print("Delantero de River")
+
+class Volante(Jugador):
+    def jugar(self):
+        print("Volante de River")
+
+class Defensor(Jugador):
+    def jugar(self):
+        print("Defensor de River")
+
+
+class Arquero(Jugador):
+    def jugar(self):
+        print("Arquero de River")
+
+# Factory
+class JugadorFactory:
+
+    @staticmethod
+    def crear_jugador(posicion):
+        # Según la posición, crea un tipo distinto de jugador
+        if posicion == "delantero":
+            return Delantero()
+        elif posicion == "volante":
+            return Volante()
+        elif posicion == "defensor":
+            return Defensor()
+        elif posicion == "arquero":
+            return Arquero()
+        else:
+            raise ValueError("Posición inválida")
+
+
+j1 = JugadorFactory.crear_jugador("delantero")
+j2 = JugadorFactory.crear_jugador("Volante")
+j3 = JugadorFactory.crear_jugador("defensor")
+j4 = JugadorFactory.crear_jugador("arquero")
+
+j1.jugar()
+j2.jugar()
+j3.jugar()
+j4.jugar()

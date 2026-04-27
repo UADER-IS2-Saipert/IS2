@@ -1,0 +1,58 @@
+class EquipoRiver:
+    def __init__(self):
+        self.jugadores = []
+
+    def agregar_jugador(self, jugador):
+        self.jugadores.append(jugador)
+
+    def mostrar_equipo(self):
+        print("Equipo titular de River:")
+        for j in self.jugadores:
+            print("-", j)
+
+#Builder
+class BuilderEquipoRiver:
+    def __init__(self):
+        self.equipo = EquipoRiver()
+
+    def construir_arquero(self):
+        self.equipo.agregar_jugador("Santiago Beltrán")
+
+    def construir_defensores(self):
+        self.equipo.agregar_jugador("Gonzalo Montiel")
+        self.equipo.agregar_jugador("Lucas Martinez Quarta")
+        self.equipo.agregar_jugador("Lautaro Rivero")
+        self.equipo.agregar_jugador("Marcos Acuña")
+
+    def construir_mediocampo(self):
+        self.equipo.agregar_jugador("Aníbal Moreno")
+        self.equipo.agregar_jugador("Tomás Galván")
+        self.equipo.agregar_jugador("Juanfer Quintero")
+
+    def construir_delanteros(self):
+        self.equipo.agregar_jugador("Kendry Paez")
+        self.equipo.agregar_jugador("Joaquin Freitas")
+        self.equipo.agregar_jugador("Sebastian Driussi")
+
+    def obtener_equipo(self):
+        return self.equipo
+
+
+# Director define el orden de construcción
+class Director:
+    def __init__(self, builder):
+        self.builder = builder
+
+    def construir_equipo(self):
+        self.builder.construir_arquero()
+        self.builder.construir_defensores()
+        self.builder.construir_mediocampo()
+        self.builder.construir_delanteros()
+        return self.builder.obtener_equipo()
+
+
+builder = BuilderEquipoRiver()
+director = Director(builder)
+
+equipo = director.construir_equipo()
+equipo.mostrar_equipo()

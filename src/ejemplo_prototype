@@ -1,0 +1,30 @@
+class Jugador:
+    def __init__(self, nombre, posicion):
+        self.nombre = nombre
+        self.posicion = posicion
+
+    def mostrar(self):
+        print(f"Jugador: {self.nombre} | Posición: {self.posicion}")
+
+    def clonar(self):
+        # Creamos un nuevo objeto con los mismos datos
+        return Jugador(self.nombre, self.posicion)
+
+# Jugador original
+jugador1 = Jugador("Montiel", "Defensor")
+
+# Clonamos
+jugador2 = jugador1.clonar()
+jugador3 = jugador1.clonar()
+
+# Modificamos clones
+jugador2.nombre = "Acuña"
+jugador3.nombre = "Rivero"
+
+# Mostramos resultados
+jugador1.mostrar()
+jugador2.mostrar()
+jugador3.mostrar()
+
+# Verificamos que son distintos objetos
+print(jugador1 is jugador2) 
